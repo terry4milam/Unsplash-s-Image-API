@@ -1,10 +1,9 @@
 import ImageShow from './imageshow'
 const ImageListShow = ({ imglist }) => {
   return (
-    <div>
+    <div className = "image-list">
       {
         imglist.length !== 0 && imglist.map((info) => {
-          console.log(info.alt_description)
           return(
             <ImageShow key={info.id} info = {info}/>
           )

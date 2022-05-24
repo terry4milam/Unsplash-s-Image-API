@@ -1,4 +1,4 @@
-// import { Divider } from "semantic-ui-react"
+import { Segment, Form } from "semantic-ui-react"
 import { useState } from "react"
 import { createApi } from "unsplash-js"
 import { MY_ACCESS_KEY } from "../constants/immutable"
@@ -36,15 +36,18 @@ const SearchBox = ({setImgList}) => {
   })
 
   return (
-    <div>
-      <form onSubmit = {(ev) => onEnter(ev)}>
-        <p>Image Search</p>
-        <input 
-          value = {search} 
-          onChange = {(ev)=>setChange(ev)}
-        ></input>
-      </form >
-    </div>
+    <Segment>
+      <Form onSubmit = {(ev) => onEnter(ev)}>
+        <div className = "field">
+          <label>Image Search</label>
+          <input 
+            type = "text"
+            value = {search} 
+            onChange = {(ev)=>setChange(ev)}
+          ></input>
+        </div>
+      </Form >
+    </Segment>
   )
 }
 
