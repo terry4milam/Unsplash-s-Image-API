@@ -1,5 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+// import 'semantic-ui-css/semantic.min.css'
+// Put any other imports below so that CSS from your
+// components takes precedence over default styles.
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
