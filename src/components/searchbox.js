@@ -1,8 +1,6 @@
 import { Segment, Form } from "semantic-ui-react"
 import { useState } from "react"
-import { createApi } from "unsplash-js"
-import { MY_ACCESS_KEY } from "../constants/immutable"
-
+import LoadImageAPI from "../APIs/loadImage.api"
 const SearchBox = ({setImgList}) => {
   // search key workd
   const [ search, setSearch] = useState('')
@@ -11,33 +9,15 @@ const SearchBox = ({setImgList}) => {
       setSearch(ev.target.value)
   }
   // when "enter"
-  const onEnter = (ev) => {
-      ev.preventDefault()
-      if(search){
-          console.log(
-            unsplash.search.getPhotos({
-              query: search,
-              page: 1,
-              perPage: 10,
-              orderBy: "",
-            }).then(result => {
-              if(result.type === 'success') {
-                // const photos = result.response.results
-                setImgList(result.response.results)
-              }
-            })
-          )
-      }
-
+  const onEnter = async (ev) => {
+    ev.preventDefault()
+    const res = await LoadImageAPI(search)
+    console.log("list", search, res)
+    setImgList(res)
   }
-  // unsplash API
-  const unsplash = createApi({
-    accessKey: MY_ACCESS_KEY,
-  })
-
   return (
     <Segment>
-      <Form onSubmit = {(ev) => onEnter(ev)}>
+      <Form onSubmit = {onEnter}>
         <div className = "field">
           <label>Image Search</label>
           <input 

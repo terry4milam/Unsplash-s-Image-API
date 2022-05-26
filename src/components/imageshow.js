@@ -6,7 +6,6 @@ const ImageShow = ({info}) => {
     useEffect( ()=>{
         setCSSstyle({"gridRowEnd":"span "+Math.floor(info.height*ref.current.offsetWidth/info.width/10)})
     }, [ref.current])
-    console.log(CSSstyle)
     return(
         <div style = {CSSstyle} ref = {ref}>
             <Image
