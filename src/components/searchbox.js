@@ -11,9 +11,9 @@ const SearchBox = ({setImgList}) => {
   // when "enter"
   const onEnter = async (ev) => {
     ev.preventDefault()
-    const res = await LoadImageAPI(search)
+    const res = await LoadImageAPI({search, pg:1})
     console.log("list", search, res)
-    setImgList(res)
+    setImgList({data:res, pg:1, search})
   }
   return (
     <Segment>

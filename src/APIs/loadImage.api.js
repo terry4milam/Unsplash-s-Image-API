@@ -5,14 +5,14 @@ const unsplash = createApi({
     accessKey: MY_ACCESS_KEY,
 })
 
-export const LoadImageAPI = async (search) => {
+export const LoadImageAPI = async ({search, pg}) => {
     if(search.length){
         const result = await unsplash.search.getPhotos({
             query: search,
-            page: 1,
+            page: pg,
             perPage: 10,
         })
-        console.log("result", result.type)
+        // console.log("result", result.type)
         if(result.type === 'success') {
             return result.response.results
         }

@@ -1,11 +1,13 @@
 import ImageShow from './imageshow'
 const ImageListShow = ({ imglist }) => {
+  console.log(imglist.data)
   return (
     <div className = "image-list">
       {
-        imglist.length !== 0 && imglist.map((info) => {
+        imglist.data.length !== 0 
+        && imglist.data.map((info, index) => {
           return(
-            <ImageShow key={info.id} info = {info}/>
+            <ImageShow key={info.id+"_"+index} info = {info}/>
           )
         })
       }
