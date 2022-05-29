@@ -4,16 +4,18 @@ import LoadImageAPI from "../APIs/loadImage.api"
 const SearchBox = ({setImgList}) => {
   // search key workd
   const [ search, setSearch] = useState('')
+  // const [ isFetching, setIsFetching ] = useState()
   // change the set keyword
   const setChange = (ev) => {
       setSearch(ev.target.value)
   }
   // when "enter"
-  const onEnter = async (ev) => {
+  const onEnter = (ev) => {
     ev.preventDefault()
-    const res = await LoadImageAPI({search, pg:1})
-    console.log("list", search, res)
-    setImgList({data:res, pg:1, search})
+    LoadImageAPI({search, pg:1}).then(res=> {
+      console.log("list", search, res)
+      setImgList({data:res, pg:1, search})
+    })
   }
   return (
     <Segment>

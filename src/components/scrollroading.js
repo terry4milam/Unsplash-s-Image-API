@@ -19,11 +19,14 @@ const ScrollRoading = ({setImgList, imglist, children}) => {
     /** Call API to get Images and add to list
      * @param {}
      */
-    const fetchMoreData = async () => {
+    const fetchMoreData = () => {
         const {search, data, pg} = imglist
-        const res = await LoadImageAPI({search, pg:pg+1}) || []
-        setImgList({data:[...data, ...res], pg:pg+1, search})
-        setIsFetching(false)
+        
+        LoadImageAPI({search, pg:pg+1}).then(res => {
+            setImgList({data:[...data, ...res], pg:pg+1, search})
+            setIsFetching(false)
+        })
+        
     }
 
     /**
